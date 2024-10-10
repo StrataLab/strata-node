@@ -136,6 +136,9 @@ object Dependencies {
 
   val grpcServices = "io.grpc" % "grpc-services" % ioGrpcVersion
 
+  val jacksonScala = "com.fasterxml.jackson.module"   %% "jackson-module-scala"             % "2.18.0"
+  val jacksonScalaReflection = "com.github.pjfanning" %% "jackson-scala-reflect-extensions" % "2.16.0"
+
   val node: Seq[ModuleID] =
     Seq(
       catsSlf4j,
@@ -207,7 +210,8 @@ object Dependencies {
   lazy val models: Seq[ModuleID] =
     cats ++ simulacrum ++ newType ++ scodec ++ protobufSpecs ++
     Seq(bramblScSdk, bramblScSdk.classifier("tests") % Test) ++
-    Seq(quivr4s, quivr4s.classifier("tests") % Test)
+    Seq(quivr4s, quivr4s.classifier("tests") % Test) ++
+    Seq(jacksonScala, jacksonScalaReflection)
 
   lazy val consensus: Seq[ModuleID] =
     Dependencies.mUnitTest ++ externalCrypto ++ catsEffect ++ logging ++ scalacache
